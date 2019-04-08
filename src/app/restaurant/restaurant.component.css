@@ -1,0 +1,62 @@
+.gallery {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+   grid-gap: 2rem;
+   margin-top: 2rem;
+   font-size: 1rem;
+}
+.gallery-item {
+   margin: 0;
+   transition: all 0.5s;
+}
+.gallery-item:hover {
+   transform: scale(1.05); 
+   cursor: pointer;
+}
+.dark-green {
+   background-color: darkgreen !important;
+}
+.green {
+   background-color: green !important; 
+}
+.orange{
+   background-color: orange !important;
+}
+.yellow {
+   background-color: #f9e711 !important;
+}
+.rating {
+   color: white;
+   background-color: #aaaaaa;
+   height: max-content;
+   align-self: center;
+   padding: .25rem .5rem;
+   font-size: 0.75rem;
+   border-radius: 15px;
+}
+.votes {
+   font-size: 1rem;
+   align-self: center;
+}
+.indicator {
+   height: max-content;
+   width: auto;
+   /* color: #8a584b; */
+   color: #721c24;
+   margin-bottom: .5rem;
+}
+.indicatorIcon {
+   font-size: 1.25rem;
+}
+
+
+@media(min-width:992px) {
+   .searchFood {
+      max-width: 50%;
+      margin: auto;
+   }
+   .displayText{
+      font-size: 5rem;
+      font-weight: 300;
+   }
+}

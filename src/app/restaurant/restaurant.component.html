@@ -1,0 +1,80 @@
+<div class="jumbotron">
+   <div class="container">
+      <h1 class="displayText">Top Rated Restaurants!</h1>
+      <div class="input-group mb-3 searchFood">
+         <input type="text" #restaurantName class="form-control" placeholder="Enter name of restaurant"
+            aria-label="Enter name of restaurant" aria-describedby="basic-addon2">
+         <div class="input-group-append" (click)="handleSubmit(restaurantName)">
+            <span class="input-group-text" id="basic-addon2">FIND FOOD</span>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="container">
+      <!-- <button type="button" class="btn btn-primary">Filter by cuisine</button>
+      <ul class="list-group" style="    height: 35vh;
+      overflow: auto;
+      width: 30%;">
+            <li 
+            class="list-group-item" 
+            style="font-size: 1rem;"
+            *ngFor="let cuisine of cuisineList"
+            (click)="getRestaurantsByCuisine(cuisine)">{{cuisine}}</li>
+          </ul> -->
+   <div class="gallery" *ngIf="restaurants.length > 0">
+      <div class="gallery-item" *ngFor="let restaurant of restaurants; let i = index">
+         <div class="card">
+            <img src="{{getPath(i)}}" class="mb-2 card-img-top">
+            <!-- <div class="card-header"> -->
+               <h5 class="card-title text-uppercase">{{restaurant.RestaurantName}}</h5>
+            <!-- </div> -->
+            <div class="card-body">
+               <div class="d-flex justify-evenly">
+                  <h6 class="card-subtitle mb-2 text-muted" 
+                  *ngFor="let cuisine of restaurant.Cuisines">{{cuisine}}</h6>
+               </div>
+               <ul class="list-group list-group-flush mb-3">
+                  <li class="list-group-item alert-success" *ngIf="restaurant.HasTablebooking == 'Yes'">
+                     <span class="indicatorIcon">&#10003; </span>
+                     Table booking available
+                  </li>
+                  <li class="list-group-item indicator" 
+                  *ngIf="restaurant.HasTablebooking == 'No'"><span
+                        class="indicatorIcon">&times;</span> No table
+                     booking
+                  </li>
+                  <li class="list-group-item alert-success" *ngIf="restaurant.HasOnlinedelivery == 'Yes'"> <span
+                        class="indicatorIcon">&#10003;</span> Online delivery
+                     available
+                  </li>
+                  <li class="list-group-item indicator" *ngIf="restaurant.HasOnlinedelivery == 'No'"> <span
+                        class="indicatorIcon">&times;</span> No online
+                     delivery
+                  </li>
+               </ul>
+               <div class="d-flex justify-evenly mb-3">
+                  <span class='rating {{restaurant.RatingColor.toLowerCase().split(" ").join("-")}}'><i
+                        class="fas fa-star starRating"></i> 
+                        <span class="mr-1">{{restaurant.AggregateRating}}</span>
+                        <span>{{restaurant.RatingText}}</span>
+                     </span>
+                  <span class="votes text-muted">{{restaurant.Votes}} votes</span>
+                  <span style="align-self: center;"> {{restaurant.AverageCostfortwo}} for two</span>
+               </div>
+               <!-- <button class="btn btn-primary">Go somewhere</button> -->
+            </div>
+         </div>
+      </div>
+   </div>
+   <nav class="d-flex justify-content-end">
+      <ul class="pagination" style="font-size: 1rem;">
+         <li class="page-item mr-1 {{ total <= perpage || pageNumber == 1 ? 'disabled': ''}}">
+            <a class="page-link" (click)="previousPage()">Previous</a>
+         </li>
+         <li class="page-item {{ total <= perpage || (pageNumber*perpage >= total) ? 'disabled': ''}}">
+            <a class="page-link" (click)="nextPage()">Next</a>
+         </li>
+      </ul>
+   </nav>
+   <div *ngIf="restaurants.length == 0">Loading...</div>
+</div>
